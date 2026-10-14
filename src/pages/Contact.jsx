@@ -55,7 +55,7 @@ export default function Contact() {
               </div>
 
               {/* Sage-green organic card */}
-              <div className="p-7 sm:p-8 rounded-3xl bg-[#738258] text-white shadow-xl flex flex-col gap-5 relative overflow-hidden">
+              <div className="p-7 sm:p-8 rounded-3xl bg-[#738258] text-white shadow-xl flex flex-col gap-5 relative overflow-hidden hover-lift transition-all duration-300">
                 <div className="flex items-center gap-4">
                   <div className="w-10 h-10 rounded-full bg-white/20 flex items-center justify-center shrink-0">
                     <User className="w-4 h-4" />
@@ -93,7 +93,7 @@ export default function Contact() {
               <div className="grid grid-cols-2 gap-3">
                 <a
                   href="tel:9657493161"
-                  className="flex items-center justify-center gap-2 px-4 py-3 rounded-2xl bg-[#173B2A] text-white text-xs font-semibold tracking-wider hover:bg-[#263D25] shadow transition-all"
+                  className="flex items-center justify-center gap-2 px-4 py-3 rounded-2xl bg-[#173B2A] text-white text-xs font-semibold tracking-wider hover:bg-[#263D25] shadow hover-lift transition-all active:scale-95"
                 >
                   <Phone className="w-4 h-4 text-[#DDB64C]" />
                   <span>Call Now</span>
@@ -101,7 +101,7 @@ export default function Contact() {
                 <a
                   href="https://wa.me/919657493161"
                   target="_blank" rel="noreferrer"
-                  className="flex items-center justify-center gap-2 px-4 py-3 rounded-2xl bg-[#25D366] text-white text-xs font-semibold tracking-wider hover:bg-[#1ebe5a] shadow transition-all"
+                  className="flex items-center justify-center gap-2 px-4 py-3 rounded-2xl bg-[#25D366] text-white text-xs font-semibold tracking-wider hover:bg-[#1ebe5a] shadow hover-lift transition-all active:scale-95"
                 >
                   <MessageCircle className="w-4 h-4" />
                   <span>WhatsApp</span>

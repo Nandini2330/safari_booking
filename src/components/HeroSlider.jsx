@@ -1,49 +1,78 @@
 import React, { useState, useEffect, useRef, useCallback } from 'react';
-import { ChevronLeft, ChevronRight, MapPin } from 'lucide-react';
+import { ChevronLeft, ChevronRight, ArrowDown } from 'lucide-react';
 
 const slides = [
   {
     image: '/assets/hero_slide_1.jpg',
+    heading: 'Chandoli Wilderness',
+    subheading: 'Sahyadri Tiger Reserve · Western Ghats',
     alt: 'Panoramic misty green Sahyadri hills, waterfalls and forests in Chandoli National Park',
   },
   {
     image: '/assets/hero_slide_2.jpg',
+    heading: 'Jungle Safari Expeditions',
+    subheading: 'Guided 4×4 Wildlife Tracking in Pristine Forests',
     alt: 'Safari jeep on forest trail overlooking misty Sahyadri mountain valley',
   },
   {
     image: '/assets/hero_slide_3.jpg',
+    heading: 'Vasant Sagar Waters',
+    subheading: 'Misty Dawn Across the Western Ghats',
     alt: 'Sunrise over Sahyadri mountain ridges with sea of clouds and waterfalls',
   },
   {
     image: '/assets/hero_slide_4.jpg',
+    heading: 'Karvy Wildflower Saddas',
+    subheading: 'High-Altitude Blooming Plateaus',
     alt: 'Plateau of blooming purple wildflowers overlooking misty Sahyadri valleys',
   },
 ];
 
 export default function HeroSlider({ onExploreClick }) {
   const [current, setCurrent] = useState(0);
-  const [prev, setPrev]       = useState(null);
   const [isPaused, setIsPaused] = useState(false);
   const timerRef = useRef(null);
+  const touchStartX = useRef(null);
 
   const goTo = useCallback((idx) => {
-    setPrev(current);
     setCurrent(idx);
-  }, [current]);
+  }, []);
 
   const goNext = useCallback(() => {
-    goTo((current + 1) % slides.length);
-  }, [current, goTo]);
+    setCurrent((prev) => (prev + 1) % slides.length);
+  }, []);
 
   const goPrev = useCallback(() => {
-    goTo((current - 1 + slides.length) % slides.length);
-  }, [current, goTo]);
+    setCurrent((prev) => (prev - 1 + slides.length) % slides.length);
+  }, []);
 
+  // 5 second auto rotation
   useEffect(() => {
     if (isPaused) return;
     timerRef.current = setInterval(goNext, 5000);
     return () => clearInterval(timerRef.current);
-  }, [isPaused, goNext]);
+  }, [isPaused, goNext, current]);
+
+  // Touch Swipe Handling for Mobile
+  const handleTouchStart = (e) => {
+    setIsPaused(true);
+    touchStartX.current = e.touches[0].clientX;
+  };
+
+  const handleTouchEnd = (e) => {
+    setIsPaused(false);
+    if (touchStartX.current === null) return;
+    const touchEndX = e.changedTouches[0].clientX;
+    const diff = touchStartX.current - touchEndX;
+
+    if (Math.abs(diff) > 40) {
+      if (diff > 0) goNext(); // Swiped left -> next
+      else          goPrev(); // Swiped right -> prev
+    }
+    touchStartX.current = null;
+  };
+
+  const currentSlide = slides[current];
 
   return (
     <div
@@ -51,16 +80,28 @@ export default function HeroSlider({ onExploreClick }) {
       style={{ height: 'calc(100vh - 72px)', minHeight: 480, maxHeight: 860 }}
       onMouseEnter={() => setIsPaused(true)}
       onMouseLeave={() => setIsPaused(false)}
-      onTouchStart={() => setIsPaused(true)}
-      onTouchEnd={() => setIsPaused(false)}
+      onTouchStart={handleTouchStart}
+      onTouchEnd={handleTouchEnd}
     >
+      {/* ── Slide Progress Bar ── */}
+      <div className="absolute top-0 inset-x-0 z-30 h-[3px] bg-white/15">
+        <div
+          key={current}
+          className="h-full bg-[#DDB64C] shadow-sm"
+          style={{
+            animation: !isPaused ? 'slideProgress 5s linear forwards' : 'none',
+            width: isPaused ? '100%' : '0%',
+          }}
+        />
+      </div>
+
       {/* ── Slides ── */}
       {slides.map((slide, idx) => {
         const isActive = idx === current;
         return (
           <div
             key={idx}
-            className="absolute inset-0 transition-opacity duration-[1100ms] ease-in-out"
+            className="absolute inset-0 transition-opacity duration-[1000ms] ease-in-out"
             style={{ opacity: isActive ? 1 : 0, zIndex: isActive ? 10 : 0, pointerEvents: isActive ? 'auto' : 'none' }}
             aria-hidden={!isActive}
           >
@@ -70,49 +111,43 @@ export default function HeroSlider({ onExploreClick }) {
               loading={idx === 0 ? 'eager' : 'lazy'}
               className={`w-full h-full object-cover object-center ${isActive ? 'slide-active-img' : ''}`}
             />
-            {/* Gradient overlays for text legibility */}
-            <div className="absolute inset-0 bg-gradient-to-b from-black/30 via-black/20 to-black/55 pointer-events-none" />
-            <div className="absolute inset-0 bg-gradient-to-r from-black/30 via-transparent to-black/15 pointer-events-none" />
+            {/* Crystal-clear vignette overlay: leaves middle 70% HD and bright */}
+            <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-black/25 pointer-events-none" />
           </div>
         );
       })}
 
-      {/* ── Hero Text ── */}
-      <div className="absolute inset-0 z-20 flex flex-col items-center justify-center text-center px-4">
-        {/* Eyebrow */}
-        <span
-          className="hero-text-animate text-white/90 text-[10px] sm:text-xs font-semibold tracking-[0.32em] uppercase drop-shadow mb-2"
-          style={{ animationDelay: '0.1s' }}
-        >
-          SAHYADRI TIGER RESERVE · MAHARASHTRA
-        </span>
-
-        {/* Main heading */}
-        <h1
-          className="hero-text-animate font-serif text-6xl sm:text-8xl lg:text-9xl font-bold tracking-[0.1em] text-white drop-shadow-2xl uppercase leading-none"
-          style={{ animationDelay: '0.2s', textShadow: '0 4px 24px rgba(0,0,0,0.5)' }}
-        >
-          CHANDOLI
-        </h1>
-
-        {/* Supporting line */}
+      {/* ── Refined Luxury Hero Text (Bottom-Third Composition with Breathing Room) ── */}
+      <div
+        key={`text-${current}`}
+        className="absolute inset-x-0 bottom-20 sm:bottom-24 z-20 flex flex-col items-center justify-end text-center px-4 max-w-4xl mx-auto"
+      >
+        {/* Luxury Gold Subtitle */}
         <p
-          className="hero-text-animate text-[#DDB64C] text-xs sm:text-sm lg:text-base font-semibold tracking-[0.38em] uppercase drop-shadow mt-2 sm:mt-3 mb-7 sm:mb-9"
-          style={{ animationDelay: '0.3s' }}
+          className="hero-text-animate text-[#DDB64C] text-[11px] sm:text-xs font-bold tracking-[0.28em] uppercase drop-shadow-[0_2px_8px_rgba(0,0,0,0.9)] mb-2"
+          style={{ animationDelay: '0.06s' }}
         >
-          INTO THE WILD.
+          {currentSlide.subheading}
         </p>
 
-        {/* CTA button */}
+        {/* Elegant Grand Serif Title */}
+        <h1
+          className="hero-text-animate font-serif text-4xl sm:text-6xl lg:text-7xl font-bold tracking-tight text-white drop-shadow-[0_4px_24px_rgba(0,0,0,0.85)] leading-tight mb-5"
+          style={{ animationDelay: '0.12s' }}
+        >
+          {currentSlide.heading}
+        </h1>
+
+        {/* Luxury Pill Action Button */}
         <button
           onClick={onExploreClick}
-          className="hero-text-animate group inline-flex items-center gap-3 pl-6 pr-2 py-2 rounded-full bg-white/15 hover:bg-white/25 text-white text-xs sm:text-sm font-semibold tracking-wider backdrop-blur border border-white/30 transition-all duration-300 shadow-xl"
-          style={{ animationDelay: '0.45s' }}
-          aria-label="Explore Chandoli — scroll to Discover section"
+          className="hero-text-animate group inline-flex items-center gap-3 pl-6 pr-2 py-2 rounded-full bg-white/20 hover:bg-white/30 backdrop-blur-md text-white text-xs sm:text-sm font-semibold tracking-wider border border-white/35 transition-all duration-300 shadow-xl hover:shadow-2xl hover:scale-105 active:scale-95"
+          style={{ animationDelay: '0.2s' }}
+          aria-label="Explore Chandoli Sanctuary"
         >
-          <span>Explore Chandoli</span>
-          <span className="w-8 h-8 rounded-full bg-[#DDB64C] flex items-center justify-center text-[#173B2A] transition-transform duration-300 group-hover:translate-x-0.5">
-            <ChevronRight className="w-4 h-4 stroke-[2.5]" />
+          <span>Explore Sanctuary</span>
+          <span className="w-7 h-7 rounded-full bg-[#DDB64C] flex items-center justify-center text-[#173B2A] transition-transform duration-300 group-hover:translate-y-0.5 shadow-sm">
+            <ArrowDown className="w-3.5 h-3.5 stroke-[2.5]" />
           </span>
         </button>
       </div>
@@ -120,46 +155,34 @@ export default function HeroSlider({ onExploreClick }) {
       {/* ── Prev / Next arrows ── */}
       <button
         onClick={goPrev}
-        className="absolute left-4 sm:left-6 top-1/2 -translate-y-1/2 z-30 w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-black/25 hover:bg-black/50 text-white backdrop-blur-sm border border-white/20 flex items-center justify-center transition-all focus:outline-none"
+        className="absolute left-3 sm:left-6 top-1/2 -translate-y-1/2 z-30 w-11 h-11 sm:w-12 sm:h-12 rounded-full bg-black/25 hover:bg-black/55 text-white backdrop-blur-md border border-white/20 flex items-center justify-center transition-all duration-300 focus:outline-none hover:scale-110 active:scale-95 shadow-lg"
         aria-label="Previous slide"
       >
-        <ChevronLeft className="w-5 h-5 sm:w-6 sm:h-6" />
+        <ChevronLeft className="w-5 h-5" />
       </button>
 
       <button
         onClick={goNext}
-        className="absolute right-4 sm:right-6 top-1/2 -translate-y-1/2 z-30 w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-black/25 hover:bg-black/50 text-white backdrop-blur-sm border border-white/20 flex items-center justify-center transition-all focus:outline-none"
+        className="absolute right-3 sm:right-6 top-1/2 -translate-y-1/2 z-30 w-11 h-11 sm:w-12 sm:h-12 rounded-full bg-black/25 hover:bg-black/55 text-white backdrop-blur-md border border-white/20 flex items-center justify-center transition-all duration-300 focus:outline-none hover:scale-110 active:scale-95 shadow-lg"
         aria-label="Next slide"
       >
-        <ChevronRight className="w-5 h-5 sm:w-6 sm:h-6" />
+        <ChevronRight className="w-5 h-5" />
       </button>
 
-      {/* ── Bottom bar: indicators + location ── */}
-      <div className="absolute bottom-5 sm:bottom-7 inset-x-0 z-30 px-6 sm:px-10 flex items-center justify-between">
-        {/* spacer */}
-        <div className="hidden sm:block w-36" />
-
-        {/* Dot indicators */}
-        <div className="flex items-center gap-2 mx-auto">
-          {slides.map((_, idx) => (
-            <button
-              key={idx}
-              onClick={() => goTo(idx)}
-              className={`rounded-full transition-all duration-400 focus:outline-none ${
-                idx === current
-                  ? 'w-8 h-2.5 bg-[#DDB64C]'
-                  : 'w-2.5 h-2.5 bg-white/45 hover:bg-white/70'
-              }`}
-              aria-label={`Go to slide ${idx + 1}`}
-            />
-          ))}
-        </div>
-
-        {/* Location */}
-        <div className="flex items-center gap-1.5 text-white/90 text-xs font-medium tracking-wide drop-shadow">
-          <MapPin className="w-3.5 h-3.5 text-[#DDB64C] shrink-0" />
-          <span>Chandoli, Maharashtra</span>
-        </div>
+      {/* ── Centered Minimalist Dot Indicators (No Badges, Clean & Uncluttered) ── */}
+      <div className="absolute bottom-6 sm:bottom-8 inset-x-0 z-30 flex items-center justify-center gap-2.5">
+        {slides.map((_, idx) => (
+          <button
+            key={idx}
+            onClick={() => goTo(idx)}
+            className={`rounded-full transition-all duration-300 focus:outline-none ${
+              idx === current
+                ? 'w-8 h-2 bg-[#DDB64C] shadow-md'
+                : 'w-2.5 h-2.5 bg-white/40 hover:bg-white/75'
+            }`}
+            aria-label={`Go to slide ${idx + 1}`}
+          />
+        ))}
       </div>
     </div>
   );

@@ -79,7 +79,7 @@ export default function TheLand({ setActivePage, openEnquiryModal }) {
       <section className="py-14 sm:py-20 px-4 sm:px-8 lg:px-12 max-w-screen-xl mx-auto border-t border-[#202A20]/10">
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
           {highlights.map((item, idx) => (
-            <div key={idx} className="p-6 rounded-2xl bg-white shadow-md border border-[#202A20]/5 flex flex-col">
+            <div key={idx} className="p-6 rounded-2xl bg-white shadow-md border border-[#202A20]/5 flex flex-col hover-lift transition-all duration-300">
               <span className="text-[10px] font-bold tracking-widest uppercase text-[#687348] mb-2">{item.metric}</span>
               <h3 className="font-serif text-lg font-bold text-[#173B2A] mb-2">{item.title}</h3>
               <p className="text-xs text-[#202A20]/70 leading-relaxed">{item.desc}</p>

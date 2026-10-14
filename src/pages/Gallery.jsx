@@ -2,21 +2,28 @@ import React, { useState } from 'react';
 import { Eye } from 'lucide-react';
 
 const allItems = [
-  { id: 1,  src: '/assets/grid_lake.jpg',         title: 'Chandoli Lake Backwaters',         category: 'Landscapes',  cols: 'col-span-12 sm:col-span-7',  aspect: 'h-60 sm:h-64' },
-  { id: 2,  src: '/assets/grid_flower.jpg',        title: 'Karvy Blossom Close-up',           category: 'Wildflowers', cols: 'col-span-6 sm:col-span-5',   aspect: 'h-60 sm:h-64' },
-  { id: 3,  src: '/assets/grid_bird.jpg',          title: 'Kingfisher on River Perch',        category: 'Birds',       cols: 'col-span-6 sm:col-span-4',   aspect: 'h-60 sm:h-64' },
-  { id: 4,  src: '/assets/grid_leopard.jpg',       title: 'Leopard in Dense Undergrowth',     category: 'Wildlife',    cols: 'col-span-12 sm:col-span-8',  aspect: 'h-60 sm:h-64' },
-  { id: 5,  src: '/assets/grid_snake.jpg',         title: 'Bamboo Pit Viper on Mossy Branch', category: 'Wildlife',    cols: 'col-span-12 sm:col-span-5',  aspect: 'h-64 sm:h-72' },
-  { id: 6,  src: '/assets/grid_jeep.jpg',          title: 'Safari Jeep on Forest Trail',      category: 'Safari',      cols: 'col-span-6 sm:col-span-4',   aspect: 'h-64 sm:h-72' },
-  { id: 7,  src: '/assets/grid_waterfall.jpg',     title: 'Monsoon Cascade in Sahyadris',     category: 'Landscapes',  cols: 'col-span-6 sm:col-span-3',   aspect: 'h-64 sm:h-72' },
-  { id: 8,  src: '/assets/grid_mist.jpg',          title: 'Misty Dawn Ridges over Chandoli',  category: 'Landscapes',  cols: 'col-span-12 sm:col-span-6',  aspect: 'h-60 sm:h-64' },
-  { id: 9,  src: '/assets/grid_meadow.jpg',        title: 'Wildflower Plateau Meadow',        category: 'Wildflowers', cols: 'col-span-12 sm:col-span-6',  aspect: 'h-60 sm:h-64' },
-  { id: 10, src: '/assets/card_birdwatching.jpg',  title: 'Endemic Sahyadri Avifauna',        category: 'Birds',       cols: 'col-span-6 sm:col-span-4',   aspect: 'h-56 sm:h-60' },
-  { id: 11, src: '/assets/forest_jeep.jpg',        title: 'Birdwing Ecotourism Safari Patrol',category: 'Safari',      cols: 'col-span-6 sm:col-span-4',   aspect: 'h-56 sm:h-60' },
-  { id: 12, src: '/assets/card_wildflowers.jpg',   title: 'Purple Wildflowers in Bloom',      category: 'Wildflowers', cols: 'col-span-12 sm:col-span-4',  aspect: 'h-56 sm:h-60' },
+  // ── Authentic Guest & Safari Expedition Photos ──
+  { id: 1,  src: '/assets/safari_tourists_jeep.jpg',   title: 'Open 4×4 Gypsy Safari Expedition',        category: 'Safari',      cols: 'col-span-12 sm:col-span-7',  aspect: 'h-64 sm:h-72' },
+  { id: 2,  src: '/assets/safari_udagiri_gate.jpg',    title: 'UNESCO Sahyadri Check Post (Range Amba)', category: 'Safari',      cols: 'col-span-12 sm:col-span-5',  aspect: 'h-64 sm:h-72' },
+  { id: 3,  src: '/assets/safari_field_expedition.jpg', title: 'Chandoli Meadows & Open Gypsy Tour',     category: 'Safari',      cols: 'col-span-12 sm:col-span-6',  aspect: 'h-64 sm:h-72' },
+  { id: 4,  src: '/assets/safari_homestay_group.jpg',  title: 'Birdwing Ecotourism Station & Homestay',  category: 'Safari',      cols: 'col-span-12 sm:col-span-6',  aspect: 'h-64 sm:h-72' },
+  { id: 5,  src: '/assets/birdwing_safari_poster.jpg', title: 'Official Safari Guide & Souvenir Service', category: 'Safari',     cols: 'col-span-12 sm:col-span-4',  aspect: 'h-64 sm:h-72' },
+
+  // ── Nature, Landscapes & Wildlife ──
+  { id: 6,  src: '/assets/grid_lake.jpg',              title: 'Chandoli Lake Backwaters',                category: 'Landscapes',  cols: 'col-span-12 sm:col-span-8',  aspect: 'h-64 sm:h-72' },
+  { id: 7,  src: '/assets/grid_flower.jpg',            title: 'Karvy Blossom Close-up',                  category: 'Wildflowers', cols: 'col-span-6 sm:col-span-4',   aspect: 'h-60 sm:h-64' },
+  { id: 8,  src: '/assets/grid_bird.jpg',              title: 'Kingfisher on River Perch',               category: 'Birds',       cols: 'col-span-6 sm:col-span-4',   aspect: 'h-60 sm:h-64' },
+  { id: 9,  src: '/assets/grid_leopard.jpg',           title: 'Leopard in Dense Undergrowth',            category: 'Wildlife',    cols: 'col-span-12 sm:col-span-4',  aspect: 'h-60 sm:h-64' },
+  { id: 10, src: '/assets/grid_snake.jpg',             title: 'Bamboo Pit Viper on Mossy Branch',        category: 'Wildlife',    cols: 'col-span-12 sm:col-span-4',  aspect: 'h-60 sm:h-64' },
+  { id: 11, src: '/assets/grid_jeep.jpg',              title: 'Safari Jeep on Forest Trail',             category: 'Safari',      cols: 'col-span-6 sm:col-span-4',   aspect: 'h-60 sm:h-64' },
+  { id: 12, src: '/assets/grid_waterfall.jpg',         title: 'Monsoon Cascade in Sahyadris',            category: 'Landscapes',  cols: 'col-span-6 sm:col-span-4',   aspect: 'h-60 sm:h-64' },
+  { id: 13, src: '/assets/grid_mist.jpg',              title: 'Misty Dawn Ridges over Chandoli',         category: 'Landscapes',  cols: 'col-span-12 sm:col-span-6',  aspect: 'h-60 sm:h-64' },
+  { id: 14, src: '/assets/grid_meadow.jpg',            title: 'Wildflower Plateau Meadow',               category: 'Wildflowers', cols: 'col-span-12 sm:col-span-6',  aspect: 'h-60 sm:h-64' },
+  { id: 15, src: '/assets/card_birdwatching.jpg',      title: 'Endemic Sahyadri Avifauna',               category: 'Birds',       cols: 'col-span-6 sm:col-span-6',   aspect: 'h-56 sm:h-60' },
+  { id: 16, src: '/assets/forest_jeep.jpg',            title: 'Birdwing Ecotourism Safari Patrol',       category: 'Safari',      cols: 'col-span-6 sm:col-span-6',   aspect: 'h-56 sm:h-60' },
 ];
 
-const filters = ['All', 'Landscapes', 'Wildlife', 'Birds', 'Wildflowers', 'Safari'];
+const filters = ['All', 'Safari', 'Landscapes', 'Wildlife', 'Birds', 'Wildflowers'];
 
 export default function Gallery({ setLightboxIndex, setLightboxImages }) {
   const [activeFilter, setActiveFilter] = useState('All');
@@ -87,7 +94,7 @@ export default function Gallery({ setLightboxIndex, setLightboxImages }) {
               <img
                 src={item.src}
                 alt={item.title}
-                className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
+                className={`w-full h-full object-cover ${item.objectPos || 'object-top'} group-hover:scale-105 transition-transform duration-700`}
               />
               {/* Hover overlay */}
               <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-4 text-white">

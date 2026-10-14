@@ -83,7 +83,7 @@ export default function Experiences({ setActivePage, openEnquiryModal, setLightb
             <div
               key={idx}
               onClick={() => handleCardClick(idx)}
-              className="group bg-white rounded-2xl overflow-hidden shadow-md hover:shadow-xl transition-all duration-300 border border-[#202A20]/5 flex flex-col cursor-pointer"
+              className="group bg-white rounded-2xl overflow-hidden shadow-md hover:shadow-xl hover-lift transition-all duration-300 border border-[#202A20]/5 flex flex-col cursor-pointer"
             >
               {/* Image */}
               <div className="relative w-full h-52 sm:h-60 overflow-hidden">

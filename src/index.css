@@ -58,22 +58,85 @@
 }
 
 /* ── Slide fade animations ── */
+@keyframes slideProgress {
+  from { width: 0%; }
+  to   { width: 100%; }
+}
+
 @keyframes heroFadeIn {
-  from { opacity: 0; transform: translateY(14px); }
+  from { opacity: 0; transform: translateY(18px); }
   to   { opacity: 1; transform: translateY(0); }
 }
 
 .hero-text-animate {
-  animation: heroFadeIn 0.8s cubic-bezier(0.16, 1, 0.3, 1) both;
+  animation: heroFadeIn 0.9s cubic-bezier(0.16, 1, 0.3, 1) both;
 }
 
 @keyframes fadeIn {
-  from { opacity: 0; transform: translateY(8px); }
+  from { opacity: 0; transform: translateY(10px); }
   to   { opacity: 1; transform: translateY(0); }
 }
 
 .animate-fade-in {
   animation: fadeIn 0.5s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+/* ── Rich Global Animations ── */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(24px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.animate-fade-up {
+  animation: fadeUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+@keyframes floatGentle {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-6px); }
+}
+
+.animate-float {
+  animation: floatGentle 4s ease-in-out infinite;
+}
+
+/* Soft pulsating radar glow for WhatsApp button */
+@keyframes whatsappPulse {
+  0% {
+    box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.65), 0 8px 25px rgba(37, 211, 102, 0.35);
+  }
+  70% {
+    box-shadow: 0 0 0 16px rgba(37, 211, 102, 0), 0 8px 25px rgba(37, 211, 102, 0.35);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(37, 211, 102, 0), 0 8px 25px rgba(37, 211, 102, 0.35);
+  }
+}
+
+.animate-whatsapp-pulse {
+  animation: whatsappPulse 2.8s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+}
+
+/* ── Interactive Micro-interactions ── */
+.hover-lift {
+  transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.35s ease, border-color 0.35s ease;
+}
+
+.hover-lift:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 14px 30px -8px rgba(23, 59, 42, 0.18);
+}
+
+.hover-zoom-img {
+  overflow: hidden;
+}
+
+.hover-zoom-img img {
+  transition: transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.hover-zoom-img:hover img {
+  transform: scale(1.06);
 }
 
 /* ── Zoom on active slide ── */
@@ -105,15 +168,15 @@
 
 /* ── Pill filter buttons ── */
 .filter-pill {
-  @apply px-5 py-2 rounded-full text-xs font-semibold tracking-wider transition-all duration-200 cursor-pointer;
+  @apply px-5 py-2 rounded-full text-xs font-semibold tracking-wider transition-all duration-300 cursor-pointer;
 }
 
 .filter-pill-active {
-  @apply bg-[#173B2A] text-white shadow-md;
+  @apply bg-[#173B2A] text-white shadow-md scale-105;
 }
 
 .filter-pill-inactive {
-  @apply bg-[#F6F0E2] border border-[#A5AD8A]/50 text-[#202A20] hover:border-[#687348];
+  @apply bg-[#F6F0E2] border border-[#A5AD8A]/50 text-[#202A20] hover:border-[#687348] hover:bg-white/40;
 }
 
 /* ── Timeline connector line ── */
@@ -141,5 +204,8 @@
 @media (prefers-reduced-motion: reduce) {
   .slide-active-img { animation: none; }
   .hero-text-animate { animation: none; }
+  .animate-float { animation: none; }
+  .animate-whatsapp-pulse { animation: none; }
+  .hover-lift:hover { transform: none; }
   * { transition-duration: 0.01ms !important; animation-duration: 0.01ms !important; }
 }

@@ -1,126 +1,196 @@
 import React from 'react';
+import { Phone, MessageCircle, MapPin, Clock, ShieldCheck, Compass, ExternalLink, ChevronRight } from 'lucide-react';
 
-export default function Footer({ setActivePage }) {
+export default function Footer({ setActivePage, openEnquiryModal }) {
   const handleNav = (page) => {
     setActivePage(page);
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
-  const links = [
+  const navLinks = [
     { id: 'home',        label: 'Home' },
     { id: 'land',        label: 'The Land' },
-    { id: 'history',     label: 'History' },
+    { id: 'history',     label: 'History & Heritage' },
     { id: 'safari',      label: 'Jungle Safari' },
-    { id: 'experiences', label: 'Moments' },
-    { id: 'contact',     label: 'Contact' },
+    { id: 'experiences', label: 'Moments & Flora' },
+    { id: 'gallery',     label: 'Photo Gallery' },
+    { id: 'contact',     label: 'Contact & Map' },
   ];
 
   return (
-    <footer className="relative bg-[#173B2A] text-white overflow-hidden">
-      {/* Subtle botanical watermark */}
-      <img
-        src="/assets/botanical_branch_dark.svg"
-        alt=""
-        aria-hidden="true"
-        className="absolute bottom-0 right-6 w-40 h-40 opacity-10 pointer-events-none select-none"
-      />
-      <img
-        src="/assets/botanical_branch_dark.svg"
-        alt=""
-        aria-hidden="true"
-        className="absolute top-0 left-4 w-28 h-28 opacity-8 pointer-events-none select-none rotate-180"
-      />
+    <footer className="relative bg-[#0F241A] text-white overflow-hidden border-t border-[#DDB64C]/20">
+      {/* ═══════════════════════════════════════════
+          MAIN FOOTER: 4 RICH COLUMNS
+      ═══════════════════════════════════════════ */}
+      <div className="relative z-10 max-w-screen-xl mx-auto px-4 sm:px-8 lg:px-12 pt-12 pb-4 sm:pb-5">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-8 lg:gap-8 pb-7 border-b border-white/10">
 
-      <div className="relative z-10 max-w-screen-xl mx-auto px-4 sm:px-8 lg:px-12 pt-12 pb-8">
-        {/* Main Footer Row */}
-        <div className="flex flex-col md:flex-row items-center justify-between gap-6 lg:gap-8 pb-8">
+          {/* Column 1: Brand & Bio (4 cols) */}
+          <div className="lg:col-span-4 flex flex-col items-start">
+            <button
+              onClick={() => handleNav('home')}
+              className="flex items-center gap-3 text-left focus:outline-none group mb-4"
+              aria-label="Chandoli National Park Home"
+            >
+              <img
+                src="/assets/leaf_icon.svg"
+                alt="Chandoli National Park Leaf Logo"
+                className="w-10 h-10 object-contain brightness-110 group-hover:scale-105 transition-transform duration-200"
+              />
+              <div className="flex flex-col leading-tight">
+                <span className="font-serif text-xl font-bold text-white tracking-wide">
+                  Chandoli National Park
+                </span>
+                <span className="text-[10px] tracking-[0.22em] font-bold text-[#DDB64C] uppercase">
+                  Birdwing Ecotourism
+                </span>
+              </div>
+            </button>
 
-          {/* Left: Brand */}
-          <button
-            onClick={() => handleNav('home')}
-            className="flex items-center gap-3 text-left focus:outline-none group shrink-0"
-            aria-label="Chandoli National Park Home"
-          >
-            <img
-              src="/assets/leaf_icon.svg"
-              alt="Chandoli National Park Logo"
-              className="w-9 h-9 object-contain brightness-110 group-hover:scale-105 transition-transform duration-200"
-            />
-            <div className="flex flex-col leading-tight">
-              <span className="font-serif text-lg font-semibold text-white tracking-wide">
-                Chandoli National Park
-              </span>
-              <span className="text-[10px] tracking-[0.22em] font-bold text-[#A5AD8A] uppercase">
-                Birdwing Ecotourism
-              </span>
+            <p className="text-xs sm:text-sm text-white/70 leading-relaxed mb-6">
+              Official ecotourism initiative inside the northern Western Ghats UNESCO World Heritage site and Sahyadri Tiger Reserve. Promoting sustainable forest conservation, community livelihoods, and wildlife observation.
+            </p>
+
+            {/* Trust Badges */}
+            <div className="flex flex-col gap-2.5 w-full">
+              <div className="flex items-center gap-2.5 text-[11px] text-[#DDB64C] bg-white/5 border border-white/10 px-3.5 py-2 rounded-xl">
+                <ShieldCheck className="w-4 h-4 shrink-0" />
+                <span className="font-medium text-white/85">Authorized Sahyadri Tiger Reserve Ecotourism</span>
+              </div>
+              <div className="flex items-center gap-2.5 text-[11px] text-[#DDB64C] bg-white/5 border border-white/10 px-3.5 py-2 rounded-xl">
+                <Compass className="w-4 h-4 shrink-0" />
+                <span className="font-medium text-white/85">Strict Leave-No-Trace & Zero Plastic Zone</span>
+              </div>
             </div>
-          </button>
-
-          {/* Middle: Nav links */}
-          <nav className="flex flex-wrap items-center justify-center gap-x-4 lg:gap-x-6 gap-y-2 text-[12px] sm:text-[13px] text-white/75" aria-label="Footer navigation">
-            {links.map((link, i) => (
-              <React.Fragment key={link.id}>
-                <button
-                  onClick={() => handleNav(link.id)}
-                  className="hover:text-white transition-colors duration-200 font-medium whitespace-nowrap focus:outline-none"
-                >
-                  {link.label}
-                </button>
-                {i < links.length - 1 && (
-                  <span className="text-white/20 text-xs select-none" aria-hidden="true">|</span>
-                )}
-              </React.Fragment>
-            ))}
-          </nav>
-
-          {/* Right: Social icons */}
-          <div className="flex items-center gap-3 text-white/70 shrink-0">
-            <a
-              href="https://www.instagram.com"
-              target="_blank"
-              rel="noreferrer"
-              aria-label="Instagram"
-              className="w-9 h-9 rounded-full bg-white/5 border border-white/15 flex items-center justify-center hover:bg-white/15 hover:text-white hover:border-white/30 transition-all duration-200"
-            >
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" className="w-4 h-4">
-                <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/>
-                <circle cx="12" cy="12" r="4.5"/>
-                <circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/>
-              </svg>
-            </a>
-            <a
-              href="https://www.facebook.com"
-              target="_blank"
-              rel="noreferrer"
-              aria-label="Facebook"
-              className="w-9 h-9 rounded-full bg-white/5 border border-white/15 flex items-center justify-center hover:bg-white/15 hover:text-white hover:border-white/30 transition-all duration-200"
-            >
-              <svg viewBox="0 0 24 24" fill="currentColor" className="w-4 h-4">
-                <path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"/>
-              </svg>
-            </a>
-            <a
-              href="https://www.youtube.com"
-              target="_blank"
-              rel="noreferrer"
-              aria-label="YouTube"
-              className="w-9 h-9 rounded-full bg-white/5 border border-white/15 flex items-center justify-center hover:bg-white/15 hover:text-white hover:border-white/30 transition-all duration-200"
-            >
-              <svg viewBox="0 0 24 24" fill="currentColor" className="w-4 h-4">
-                <path d="M22.54 6.42a2.78 2.78 0 00-1.95-1.96C18.88 4 12 4 12 4s-6.88 0-8.59.46A2.78 2.78 0 001.46 6.42 29 29 0 001 12a29 29 0 00.46 5.58A2.78 2.78 0 003.41 19.6C5.12 20 12 20 12 20s6.88 0 8.59-.46a2.78 2.78 0 001.95-1.95A29 29 0 0023 12a29 29 0 00-.46-5.58z"/>
-                <polygon fill="#173B2A" points="9.75 15.02 15.5 12 9.75 8.98 9.75 15.02"/>
-              </svg>
-            </a>
           </div>
+
+          {/* Column 2: Quick Links (2 cols) */}
+          <div className="lg:col-span-2">
+            <h4 className="font-serif text-base font-bold text-[#DDB64C] tracking-wide mb-4">
+              Explore
+            </h4>
+            <ul className="flex flex-col gap-2.5 text-xs sm:text-sm text-white/75">
+              {navLinks.map((link) => (
+                <li key={link.id}>
+                  <button
+                    onClick={() => handleNav(link.id)}
+                    className="hover:text-[#DDB64C] transition-colors duration-200 text-left flex items-center gap-1.5 group focus:outline-none"
+                  >
+                    <span className="w-1.5 h-1.5 rounded-full bg-[#DDB64C]/50 group-hover:bg-[#DDB64C] transition-colors" />
+                    <span>{link.label}</span>
+                  </button>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          {/* Column 3: Safari Schedules & Gates (3 cols) */}
+          <div className="lg:col-span-3">
+            <h4 className="font-serif text-base font-bold text-[#DDB64C] tracking-wide mb-4">
+              Safari Timings & Entry
+            </h4>
+            <div className="flex flex-col gap-3.5 text-xs sm:text-sm text-white/75">
+              <div className="flex items-start gap-3 bg-white/5 p-3 rounded-xl border border-white/8">
+                <Clock className="w-4 h-4 text-[#DDB64C] shrink-0 mt-0.5" />
+                <div>
+                  <span className="font-semibold text-white block text-[11px] uppercase tracking-wider">Morning Safari Slot</span>
+                  <p className="text-white/70 text-xs">06:00 AM – 10:00 AM (Best for Birds & Predators)</p>
+                </div>
+              </div>
+
+              <div className="flex items-start gap-3 bg-white/5 p-3 rounded-xl border border-white/8">
+                <Clock className="w-4 h-4 text-[#DDB64C] shrink-0 mt-0.5" />
+                <div>
+                  <span className="font-semibold text-white block text-[11px] uppercase tracking-wider">Evening Safari Slot</span>
+                  <p className="text-white/70 text-xs">03:00 PM – 06:30 PM (Golden Hour Landscapes)</p>
+                </div>
+              </div>
+
+              <p className="text-[11px] text-white/60 leading-relaxed">
+                * Safaris operate via open 4×4 Gypsy. Advance permits and valid Government photo ID are mandatory for park entry.
+              </p>
+            </div>
+          </div>
+
+          {/* Column 4: Contact & Location (3 cols) */}
+          <div className="lg:col-span-3">
+            <h4 className="font-serif text-base font-bold text-[#DDB64C] tracking-wide mb-4">
+              Direct Helpdesk
+            </h4>
+            <div className="flex flex-col gap-3 text-xs sm:text-sm text-white/80">
+              <div className="flex items-start gap-3">
+                <div className="w-8 h-8 rounded-full bg-white/10 flex items-center justify-center shrink-0 mt-0.5">
+                  <Phone className="w-3.5 h-3.5 text-[#DDB64C]" />
+                </div>
+                <div>
+                  <span className="text-[10px] text-white/50 uppercase tracking-wider block">Lead Naturalist</span>
+                  <span className="font-semibold text-white">Pranav Mahajan</span>
+                  <a href="tel:9657493161" className="block text-white hover:text-[#DDB64C] font-mono text-sm mt-0.5 font-bold transition-colors">
+                    9657493161
+                  </a>
+                </div>
+              </div>
+
+              <div className="flex items-start gap-3">
+                <div className="w-8 h-8 rounded-full bg-white/10 flex items-center justify-center shrink-0 mt-0.5">
+                  <MapPin className="w-3.5 h-3.5 text-[#DDB64C]" />
+                </div>
+                <div>
+                  <span className="text-[10px] text-white/50 uppercase tracking-wider block">Base Camp</span>
+                  <p className="text-xs text-white/80 leading-relaxed">
+                    Chandoli, Manadur, Taluka Shirala, Sangli District, Maharashtra 415408
+                  </p>
+                  <a
+                    href="https://maps.app.goo.gl/ufNzEfhqcwrK7QKd9"
+                    target="_blank"
+                    rel="noreferrer"
+                    className="inline-flex items-center gap-1 text-[11px] text-[#DDB64C] font-semibold hover:underline mt-1"
+                  >
+                    <span>Get GPS Directions</span>
+                    <ExternalLink className="w-3 h-3" />
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+
         </div>
 
-        {/* Divider between content and copyright */}
-        <div className="w-full border-t border-white/12" />
+        {/* ═══════════════════════════════════════════
+            BOTTOM LEGAL & SOCIAL ROW (Tight, no extra gaps)
+        ═══════════════════════════════════════════ */}
+        <div className="pt-3.5 flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-white/70 pr-0 sm:pr-24 lg:pr-28">
+          <p className="tracking-normal whitespace-nowrap text-center sm:text-left">
+            © {new Date().getFullYear()} Chandoli National Park · Birdwing Ecotourism | Sahyadri Tiger Reserve, Western Ghats, Maharashtra
+          </p>
 
-        {/* Copyright row */}
-        <div className="pt-6 flex flex-col sm:flex-row items-center justify-between gap-2 text-[11px] sm:text-xs text-white/50 tracking-wide text-center sm:text-left">
-          <p>© 2025 Chandoli National Park &nbsp;|&nbsp; Birdwing Ecotourism</p>
-          <p>Sahyadri Tiger Reserve · Sangli, Maharashtra</p>
+          <div className="flex items-center gap-2.5 shrink-0">
+            <a
+              href="https://wa.me/919657493161"
+              target="_blank"
+              rel="noreferrer"
+              aria-label="WhatsApp"
+              className="w-8 h-8 rounded-full bg-white/5 border border-white/15 flex items-center justify-center hover:bg-[#25D366] hover:text-white hover:border-[#25D366] transition-all duration-200"
+            >
+              <MessageCircle className="w-3.5 h-3.5" />
+            </a>
+            <a
+              href="tel:9657493161"
+              aria-label="Direct Call"
+              className="w-8 h-8 rounded-full bg-white/5 border border-white/15 flex items-center justify-center hover:bg-[#DDB64C] hover:text-[#173B2A] hover:border-[#DDB64C] transition-all duration-200"
+            >
+              <Phone className="w-3.5 h-3.5" />
+            </a>
+            <a
+              href="https://maps.app.goo.gl/ufNzEfhqcwrK7QKd9"
+              target="_blank"
+              rel="noreferrer"
+              aria-label="Google Maps"
+              className="w-8 h-8 rounded-full bg-white/5 border border-white/15 flex items-center justify-center hover:bg-white/20 hover:text-white hover:border-white/40 transition-all duration-200"
+            >
+              <MapPin className="w-3.5 h-3.5" />
+            </a>
+          </div>
         </div>
       </div>
     </footer>
