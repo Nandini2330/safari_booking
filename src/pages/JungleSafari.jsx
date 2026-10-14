@@ -115,7 +115,7 @@ export default function JungleSafari({ openEnquiryModal }) {
       </section>
 
       {/* ─── OFFICIAL SAFARI TARIFF & PACKAGES ─── */}
-      <section className="py-16 sm:py-24 px-4 sm:px-8 lg:px-12 bg-[#FAF7F0] border-t border-[#202A20]/8">
+      <section className="py-16 sm:py-24 px-4 sm:px-8 lg:px-12 bg-[#E8EFE6] border-y border-[#202A20]/8">
         <div className="max-w-screen-xl mx-auto">
           <div className="text-center max-w-2xl mx-auto mb-12 sm:mb-16">
             <span className="text-[11px] font-bold tracking-[0.28em] text-[#687348] uppercase block mb-2">
@@ -238,7 +238,7 @@ export default function JungleSafari({ openEnquiryModal }) {
               <div className="flex flex-col gap-2.5 pt-2">
                 <button
                   onClick={openEnquiryModal}
-                  className="w-full py-3 rounded-full bg-[#173B2A] hover:bg-[#263D25] text-white text-xs sm:text-sm font-bold tracking-wider transition-all duration-300 shadow-md active:scale-95"
+                  className="w-full py-3 rounded-full bg-[#DDB64C] hover:bg-[#CBA239] text-[#173B2A] text-xs sm:text-sm font-extrabold tracking-wider transition-all duration-300 shadow-md active:scale-95"
                 >
                   Book Weekend Safari
                 </button>

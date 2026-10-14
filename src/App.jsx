@@ -74,7 +74,7 @@ export default function App() {
       case 'land':
         return <TheLand setActivePage={navigateTo} openEnquiryModal={() => setIsEnquiryOpen(true)} />;
       case 'history':
-        return <History setActivePage={navigateTo} />;
+        return <History setActivePage={navigateTo} openEnquiryModal={() => setIsEnquiryOpen(true)} />;
       case 'safari':
         return <JungleSafari openEnquiryModal={() => setIsEnquiryOpen(true)} />;
       case 'experiences':

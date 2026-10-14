@@ -168,6 +168,62 @@ export default function Contact() {
               </div>
             </div>
           </div>
+
+          {/* ─── HOW TO REACH CHANDOLI (DRIVE DISTANCES) ─── */}
+          <div className="mt-16 sm:mt-20 p-8 sm:p-10 rounded-3xl bg-[#E8EFE6] border border-[#202A20]/8">
+            <div className="text-center max-w-xl mx-auto mb-8">
+              <span className="text-[10px] font-bold tracking-[0.28em] text-[#687348] uppercase block mb-1">
+                TRAVEL LOGISTICS
+              </span>
+              <h3 className="font-serif text-2xl sm:text-3xl font-bold text-[#173B2A]">
+                How to Reach Chandoli National Park
+              </h3>
+              <span className="w-10 h-[2.5px] bg-[#DDB64C] rounded mx-auto mt-2.5 block" />
+            </div>
+
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+              <div className="p-5 rounded-2xl bg-white shadow-sm border border-[#202A20]/5">
+                <span className="text-[10px] font-bold text-[#DDB64C] tracking-wider uppercase block mb-1 font-mono">
+                  ~75 KM · 2 HOURS
+                </span>
+                <h4 className="font-serif font-bold text-base text-[#173B2A] mb-1">From Kolhapur</h4>
+                <p className="text-xs text-[#202A20]/75 leading-relaxed">
+                  Route via Kolhapur – Malkapur – Amba Ghat / Manadur. Direct scenic state highway.
+                </p>
+              </div>
+
+              <div className="p-5 rounded-2xl bg-white shadow-sm border border-[#202A20]/5">
+                <span className="text-[10px] font-bold text-[#DDB64C] tracking-wider uppercase block mb-1 font-mono">
+                  ~80 KM · 2.5 HOURS
+                </span>
+                <h4 className="font-serif font-bold text-base text-[#173B2A] mb-1">From Sangli / Karad</h4>
+                <p className="text-xs text-[#202A20]/75 leading-relaxed">
+                  Via Shirala – Kokrud – Chandoli Dam approach road. Ideal for visitors arriving by train.
+                </p>
+              </div>
+
+              <div className="p-5 rounded-2xl bg-white shadow-sm border border-[#202A20]/5">
+                <span className="text-[10px] font-bold text-[#DDB64C] tracking-wider uppercase block mb-1 font-mono">
+                  ~210 KM · 4.5 HOURS
+                </span>
+                <h4 className="font-serif font-bold text-base text-[#173B2A] mb-1">From Pune</h4>
+                <p className="text-xs text-[#202A20]/75 leading-relaxed">
+                  Fast drive via NH 48 (Pune – Satara – Karad) then take the Shirala turnoff to the sanctuary.
+                </p>
+              </div>
+
+              <div className="p-5 rounded-2xl bg-white shadow-sm border border-[#202A20]/5">
+                <span className="text-[10px] font-bold text-[#DDB64C] tracking-wider uppercase block mb-1 font-mono">
+                  ~365 KM · 7 HOURS
+                </span>
+                <h4 className="font-serif font-bold text-base text-[#173B2A] mb-1">From Mumbai</h4>
+                <p className="text-xs text-[#202A20]/75 leading-relaxed">
+                  Via Mumbai-Pune Expressway & NH 48 to Karad. Best planned as a 2-day or 3-day weekend escape.
+                </p>
+              </div>
+            </div>
+          </div>
+
         </div>
       </section>
 

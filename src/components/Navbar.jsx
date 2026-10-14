@@ -87,7 +87,7 @@ export default function Navbar({ activePage, setActivePage, openEnquiryModal }) 
         {/* Mobile Quick Action Pill */}
         <button
           onClick={openEnquiryModal}
-          className="lg:hidden inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-[#173B2A] text-white text-[11px] font-bold tracking-wider active:scale-95 transition-all shadow-sm"
+          className="lg:hidden inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-[#DDB64C] hover:bg-[#CBA239] text-[#173B2A] text-[11px] font-extrabold tracking-wider active:scale-95 transition-all shadow-sm"
           aria-label="Book a Safari"
         >
           <span>🐾</span>
@@ -97,7 +97,7 @@ export default function Navbar({ activePage, setActivePage, openEnquiryModal }) 
         {/* Desktop Book Safari CTA */}
         <button
           onClick={openEnquiryModal}
-          className="hidden sm:inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-[#173B2A] text-white text-[12px] font-bold tracking-wider hover:bg-[#263D25] active:scale-95 transition-all duration-200 shadow-sm whitespace-nowrap ml-2"
+          className="hidden sm:inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-[#DDB64C] hover:bg-[#CBA239] text-[#173B2A] text-[12px] font-extrabold tracking-wider active:scale-95 transition-all duration-200 shadow-md hover:shadow-lg whitespace-nowrap ml-2"
           aria-label="Book a Safari with Birdwing Ecotourism"
         >
           <span>🐾</span>
@@ -139,7 +139,7 @@ export default function Navbar({ activePage, setActivePage, openEnquiryModal }) 
 
             <button
               onClick={() => { setMobileOpen(false); openEnquiryModal(); }}
-              className="mt-3 w-full flex items-center justify-center gap-2 px-6 py-3.5 rounded-full bg-[#173B2A] text-white text-sm font-bold tracking-wider shadow-md active:scale-95"
+              className="mt-3 w-full flex items-center justify-center gap-2 px-6 py-3.5 rounded-full bg-[#DDB64C] hover:bg-[#CBA239] text-[#173B2A] text-sm font-extrabold tracking-wider shadow-md active:scale-95"
             >
               <span>🐾</span>
               <span>BOOK A SAFARI ONLINE</span>

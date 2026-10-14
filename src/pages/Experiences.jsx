@@ -112,18 +112,75 @@ export default function Experiences({ setActivePage, openEnquiryModal, setLightb
           ))}
         </div>
 
+        {/* ─── SEASONAL SIGHTING CALENDAR ─── */}
+        <div className="mt-16 sm:mt-20 p-8 sm:p-10 rounded-3xl bg-[#E8EFE6] border border-[#202A20]/8">
+          <div className="text-center max-w-xl mx-auto mb-8">
+            <span className="text-[10px] font-bold tracking-[0.28em] text-[#687348] uppercase block mb-1">
+              BEST TIME TO VISIT
+            </span>
+            <h3 className="font-serif text-2xl sm:text-3xl font-bold text-[#173B2A]">
+              Seasonal Wildlife Calendar
+            </h3>
+            <span className="w-10 h-[2.5px] bg-[#DDB64C] rounded mx-auto mt-2.5 block" />
+          </div>
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+            <div className="p-5 rounded-2xl bg-white shadow-sm border border-[#202A20]/5">
+              <span className="text-[10px] font-bold text-[#DDB64C] tracking-wider uppercase block mb-1">
+                JULY – SEPTEMBER
+              </span>
+              <h4 className="font-serif font-bold text-base text-[#173B2A] mb-1.5">Monsoon Blooms</h4>
+              <p className="text-xs text-[#202A20]/75 leading-relaxed">
+                Spectacular mass Karvy flowerings on basalt Saddas, thundering forest waterfalls, and vibrant endemic amphibians.
+              </p>
+            </div>
+
+            <div className="p-5 rounded-2xl bg-white shadow-sm border border-[#202A20]/5">
+              <span className="text-[10px] font-bold text-[#DDB64C] tracking-wider uppercase block mb-1">
+                OCTOBER – NOVEMBER
+              </span>
+              <h4 className="font-serif font-bold text-base text-[#173B2A] mb-1.5">Post-Monsoon Green</h4>
+              <p className="text-xs text-[#202A20]/75 leading-relaxed">
+                Crystal clear lake waters, lush emerald valleys, butterfly migrations, and ideal weather for walking trails.
+              </p>
+            </div>
+
+            <div className="p-5 rounded-2xl bg-white shadow-sm border border-[#202A20]/5">
+              <span className="text-[10px] font-bold text-[#DDB64C] tracking-wider uppercase block mb-1">
+                DECEMBER – FEBRUARY
+              </span>
+              <h4 className="font-serif font-bold text-base text-[#173B2A] mb-1.5">Winter Predator Tracking</h4>
+              <p className="text-xs text-[#202A20]/75 leading-relaxed">
+                Crisp misty mornings, high predator movement along safari tracks, and migratory raptors arriving in the reserve.
+              </p>
+            </div>
+
+            <div className="p-5 rounded-2xl bg-white shadow-sm border border-[#202A20]/5">
+              <span className="text-[10px] font-bold text-[#DDB64C] tracking-wider uppercase block mb-1">
+                MARCH – JUNE
+              </span>
+              <h4 className="font-serif font-bold text-base text-[#173B2A] mb-1.5">Summer Waterholes</h4>
+              <p className="text-xs text-[#202A20]/75 leading-relaxed">
+                Maximum wildlife congregation at Vasant Sagar backwaters — Indian Gaur herds, leopards, sloth bears, and hornbills.
+              </p>
+            </div>
+          </div>
+        </div>
+
         {/* ─── CTA band ─── */}
-        <div className="mt-16 px-8 sm:px-12 py-10 rounded-3xl bg-[#173B2A] text-white flex flex-col sm:flex-row items-center justify-between gap-6 shadow-xl">
-          <div>
-            <span className="text-[10px] font-bold tracking-[0.28em] text-[#DDB64C] uppercase">CUSTOM GUIDED VISITS</span>
+        <div className="mt-12 sm:mt-16 px-8 sm:px-12 py-10 rounded-3xl bg-[#173B2A] text-white flex flex-col sm:flex-row items-center justify-between gap-6 shadow-xl">
+          <div className="max-w-xl">
+            <span className="text-[10px] font-bold tracking-[0.28em] text-[#DDB64C] uppercase">CUSTOM GUIDED EXPEDITIONS</span>
             <h3 className="font-serif text-2xl sm:text-3xl font-bold mt-1">Want a Tailored Nature Experience?</h3>
-            <p className="text-xs text-white/70 mt-1">Pranav Mahajan and Birdwing Ecotourism arrange specialised birdwatching and photography circuits.</p>
+            <p className="text-xs sm:text-sm text-white/75 mt-1.5 leading-relaxed">
+              Pranav Mahajan and Birdwing Ecotourism arrange specialised birdwatching expeditions, macro photography tours, and botanic walks.
+            </p>
           </div>
           <button
             onClick={openEnquiryModal}
-            className="px-6 py-3 rounded-full bg-[#DDB64C] text-[#173B2A] text-xs sm:text-sm font-semibold tracking-wider hover:bg-[#c9a43f] transition-all shadow-md whitespace-nowrap"
+            className="px-7 py-3.5 rounded-full bg-[#DDB64C] hover:bg-[#CBA239] text-[#173B2A] text-xs sm:text-sm font-extrabold tracking-wider transition-all duration-200 shadow-md active:scale-95 whitespace-nowrap"
           >
-            Enquire With Us
+            🐾 ENQUIRE WITH US
           </button>
         </div>
       </section>
