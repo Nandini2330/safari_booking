@@ -143,7 +143,7 @@ export default function Home({ setActivePage, openEnquiryModal, setLightboxIndex
           SECTION 4 — NATURE AND HISTORY
           (Reference: home page 2 bottom, wide split)
       ═══════════════════════════════════════════ */}
-      <section className="relative w-full overflow-hidden bg-[#F6F0E2]">
+      <section className="relative w-full overflow-hidden bg-[#EFE7D8]">
         <div className="grid grid-cols-1 lg:grid-cols-2">
           {/* Left — full bleed cliff image */}
           <div className="relative h-72 sm:h-96 lg:h-[480px]">
@@ -153,11 +153,11 @@ export default function Home({ setActivePage, openEnquiryModal, setLightboxIndex
               className="w-full h-full object-cover object-center"
             />
             {/* Soft fade to right */}
-            <div className="hidden lg:block absolute inset-y-0 right-0 w-28 bg-gradient-to-l from-[#F6F0E2] to-transparent pointer-events-none" />
+            <div className="hidden lg:block absolute inset-y-0 right-0 w-28 bg-gradient-to-l from-[#EFE7D8] to-transparent pointer-events-none" />
           </div>
 
-          {/* Right — cream text */}
-          <div className="flex flex-col justify-center px-8 sm:px-12 lg:px-16 py-14 lg:py-0 bg-[#F6F0E2]">
+          {/* Right — sandstone text panel */}
+          <div className="flex flex-col justify-center px-8 sm:px-12 lg:px-16 py-14 lg:py-0 bg-[#EFE7D8]">
             <span className="text-[11px] font-bold tracking-[0.28em] text-[#687348] uppercase mb-2">
               A LAND OF
             </span>
@@ -237,7 +237,7 @@ export default function Home({ setActivePage, openEnquiryModal, setLightboxIndex
       {/* ═══════════════════════════════════════════
           SECTION 5.5 — SAFARI BOOKING PACKAGES
       ═══════════════════════════════════════════ */}
-      <section className="relative py-16 sm:py-24 bg-[#F6F0E2] overflow-hidden">
+      <section className="relative py-16 sm:py-24 bg-[#E8EFE6] overflow-hidden">
         {/* Subtle Watermarks */}
         <img
           src="/assets/botanical_branch.svg"
@@ -547,7 +547,7 @@ export default function Home({ setActivePage, openEnquiryModal, setLightboxIndex
       {/* ═══════════════════════════════════════════
           SECTION 6 — NATURE IN EVERY MOMENT
       ═══════════════════════════════════════════ */}
-      <section className="relative py-14 sm:py-20 bg-[#F6F0E2] overflow-hidden">
+      <section className="relative py-14 sm:py-20 bg-[#F5EFE4] overflow-hidden">
         {/* Left botanical watermark */}
         <img
           src="/assets/botanical_branch.svg"
@@ -634,9 +634,9 @@ export default function Home({ setActivePage, openEnquiryModal, setLightboxIndex
 
       {/* ═══════════════════════════════════════════
           SECTION 7 — CHANDOLI THROUGH OUR LENS
-          (Matching homepage signature botanical cream background #F6F0E2 — all faces & tourists 100% visible)
+          (Soft meadow sage mist background #E3EAE1 — exact aspect ratios, all faces & tourists 100% visible)
       ═══════════════════════════════════════════ */}
-      <section className="relative py-14 sm:py-20 bg-[#F6F0E2] overflow-hidden">
+      <section className="relative py-14 sm:py-20 bg-[#E3EAE1] overflow-hidden">
         {/* Subtle botanical watermark */}
         <img
           src="/assets/botanical_branch.svg"
