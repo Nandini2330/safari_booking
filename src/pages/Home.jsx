@@ -1,6 +1,6 @@
 import React from 'react';
 import HeroSlider from '../components/HeroSlider';
-import { ChevronRight, Phone, MessageCircle, Navigation, MessageSquare, User, MapPin, Check, Clock, Users, Sparkles, ShieldCheck } from 'lucide-react';
+import { ChevronRight, Phone, MessageCircle, Navigation, MessageSquare, User, MapPin, Check, Clock } from 'lucide-react';
 
 export default function Home({ setActivePage, openEnquiryModal, setLightboxIndex, setLightboxImages }) {
 
@@ -242,7 +242,7 @@ export default function Home({ setActivePage, openEnquiryModal, setLightboxIndex
       {/* ═══════════════════════════════════════════
           SECTION 5.5 — SAFARI BOOKING PACKAGES
       ═══════════════════════════════════════════ */}
-      <section className="relative py-14 sm:py-20 bg-[#E8EFE6] overflow-hidden">
+      <section className="relative pt-10 sm:pt-14 pb-10 sm:pb-14 bg-[#E8EFE6] overflow-hidden">
         {/* Subtle Watermarks */}
         <img
           src="/assets/botanical_branch.svg"
@@ -253,22 +253,14 @@ export default function Home({ setActivePage, openEnquiryModal, setLightboxIndex
 
         <div className="max-w-screen-xl mx-auto px-4 sm:px-8 lg:px-12 relative z-10">
           {/* Section Header */}
-          <div className="text-center max-w-xl mx-auto mb-7 sm:mb-9">
+          <div className="text-center max-w-xl mx-auto mb-6 sm:mb-8">
             <span className="text-[10px] sm:text-[11px] font-bold tracking-[0.25em] text-[#687348] uppercase block mb-1.5">
               OFFICIAL SAFARI BOOKING
             </span>
             <h2 className="font-sans text-2xl sm:text-4xl font-extrabold text-[#173B2A] tracking-tight mb-2">
               Safari Packages
             </h2>
-            <span className="w-10 h-[2.5px] bg-[#DDB64C] rounded mx-auto mb-2 block" />
-            <p className="text-xs sm:text-sm text-[#202A20]/75 mb-2.5">
-              Official 4×4 open Gypsy safaris in Chandoli. Up to 6 guests per vehicle.
-            </p>
-            {/* Exclusivity & Conservation Quota Note */}
-            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#173B2A]/8 border border-[#173B2A]/15 text-[11px] sm:text-xs text-[#173B2A] font-medium text-left shadow-xs">
-              <span className="text-sm shrink-0">🌿</span>
-              <span><strong>Forest Department regulation:</strong> Only limited 4×4 Gypsies permitted per safari session. Advance reservation recommended.</span>
-            </div>
+            <span className="w-10 h-[2.5px] bg-[#DDB64C] rounded mx-auto block" />
           </div>
 
           {/* 3 Compact Safari Package Cards (Clean Font-sans, Simple Words, Reduced Height) */}
@@ -535,29 +527,13 @@ export default function Home({ setActivePage, openEnquiryModal, setLightboxIndex
             </div>
           </div>
 
-          {/* Trust Guarantees Bar */}
-          <div className="mt-8 pt-6 border-t border-[#202A20]/10 flex flex-wrap items-center justify-around gap-4 text-xs font-medium text-[#202A20]/80 text-center">
-            <span className="flex items-center gap-2">
-              <ShieldCheck className="w-4 h-4 text-[#687348]" />
-              <span>Official Tiger Reserve Permits Handled</span>
-            </span>
-            <span className="flex items-center gap-2">
-              <Users className="w-4 h-4 text-[#687348]" />
-              <span>Private 4×4 Gypsys (No Strangers)</span>
-            </span>
-            <span className="flex items-center gap-2">
-              <Sparkles className="w-4 h-4 text-[#DDB64C]" />
-              <span>Verified Local STR Naturalists</span>
-            </span>
-          </div>
-
         </div>
       </section>
 
       {/* ═══════════════════════════════════════════
           SECTION 6 — NATURE IN EVERY MOMENT
       ═══════════════════════════════════════════ */}
-      <section className="relative py-14 sm:py-20 bg-[#F5EFE4] overflow-hidden">
+      <section className="relative pt-10 sm:pt-14 pb-14 sm:pb-20 bg-[#F5EFE4] overflow-hidden">
         {/* Left botanical watermark */}
         <img
           src="/assets/botanical_branch.svg"
