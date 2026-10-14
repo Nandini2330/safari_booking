@@ -4,7 +4,7 @@ import { ChevronRight, ArrowUpRight } from 'lucide-react';
 const experiences = [
   {
     title: 'Birdwatching',
-    category: 'Birds',
+    category: 'Birdwatching',
     image: '/assets/exp_birdwatching.jpg',
     desc: 'Spot rare Western Ghats endemics including the Malabar Pied Hornbill, Indian Roller, and Crimson-backed Sunbird.',
     page: 'gallery',
@@ -46,10 +46,23 @@ const experiences = [
   },
 ];
 
-export default function Experiences({ setActivePage, openEnquiryModal, setLightboxImages, setLightboxIndex }) {
+export default function Experiences({ setActivePage, openEnquiryModal, setLightboxImages, setLightboxIndex, initialFilter = 'All' }) {
+  const [activeFilter, setActiveFilter] = React.useState(initialFilter || 'All');
+
+  React.useEffect(() => {
+    if (initialFilter) {
+      setActiveFilter(initialFilter);
+    }
+  }, [initialFilter]);
+
+  const categories = ['All', 'Wildflowers', 'Birdwatching', 'Wildlife', 'Landscapes', 'Nature Walks', 'Eco Tourism'];
+
+  const filteredExperiences = activeFilter === 'All'
+    ? experiences
+    : experiences.filter(e => e.category.toLowerCase() === activeFilter.toLowerCase() || e.title.toLowerCase() === activeFilter.toLowerCase());
 
   const handleCardClick = (idx) => {
-    setLightboxImages(experiences.map(e => ({ src: e.image, title: e.title, category: e.category })));
+    setLightboxImages(filteredExperiences.map(e => ({ src: e.image, title: e.title, category: e.category })));
     setLightboxIndex(idx);
   };
 
@@ -76,12 +89,32 @@ export default function Experiences({ setActivePage, openEnquiryModal, setLightb
         </div>
       </div>
 
-      {/* ─── 6 EXPERIENCE CARDS ─── */}
+      {/* ─── 6 EXPERIENCE CARDS WITH CATEGORY FILTER TABS ─── */}
       <section className="py-16 sm:py-24 px-4 sm:px-8 lg:px-12 max-w-screen-xl mx-auto">
+        {/* Category Filter Tabs */}
+        <div className="flex flex-wrap items-center justify-center gap-2 sm:gap-2.5 mb-10 sm:mb-12">
+          {categories.map((cat) => {
+            const isActive = activeFilter.toLowerCase() === cat.toLowerCase();
+            return (
+              <button
+                key={cat}
+                onClick={() => setActiveFilter(cat)}
+                className={`px-4 sm:px-5 py-2 rounded-full text-xs sm:text-sm font-bold tracking-wider transition-all duration-300 shadow-sm ${
+                  isActive
+                    ? 'bg-[#173B2A] text-white shadow-md scale-105'
+                    : 'bg-white text-[#202A20]/75 hover:text-[#173B2A] hover:bg-stone-50 border border-[#202A20]/10'
+                }`}
+              >
+                {cat}
+              </button>
+            );
+          })}
+        </div>
+
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 sm:gap-6">
-          {experiences.map((exp, idx) => (
+          {filteredExperiences.map((exp, idx) => (
             <div
-              key={idx}
+              key={exp.title}
               onClick={() => handleCardClick(idx)}
               className="group bg-white rounded-2xl overflow-hidden shadow-md hover:shadow-xl hover-lift transition-all duration-300 border border-[#202A20]/5 flex flex-col cursor-pointer"
             >
@@ -90,6 +123,7 @@ export default function Experiences({ setActivePage, openEnquiryModal, setLightb
                 <img
                   src={exp.image}
                   alt={exp.title}
+                  loading="lazy"
                   className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                 />
                 <div className="absolute top-4 right-4 w-9 h-9 rounded-full bg-white/90 backdrop-blur text-[#173B2A] flex items-center justify-center shadow group-hover:bg-[#173B2A] group-hover:text-white transition-all duration-300">
@@ -99,6 +133,9 @@ export default function Experiences({ setActivePage, openEnquiryModal, setLightb
 
               {/* Content */}
               <div className="p-5 flex flex-col flex-1">
+                <span className="text-[10px] font-bold text-[#687348] tracking-widest uppercase mb-1">
+                  {exp.category}
+                </span>
                 <h3 className="font-serif text-xl font-bold text-[#173B2A] group-hover:text-[#687348] transition-colors mb-1">
                   {exp.title}
                 </h3>

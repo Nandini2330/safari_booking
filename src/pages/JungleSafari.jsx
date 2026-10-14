@@ -125,9 +125,14 @@ export default function JungleSafari({ openEnquiryModal }) {
               Gypsy Safari Pricing & Slots
             </h2>
             <span className="w-12 h-[3px] bg-[#DDB64C] rounded mx-auto mb-4 block" />
-            <p className="text-sm sm:text-base text-[#202A20]/75 leading-relaxed">
+            <p className="text-sm sm:text-base text-[#202A20]/75 leading-relaxed mb-3">
               Standard Maharashtra Tiger Reserve Gypsy safari rates. Each open 4×4 Gypsy vehicle accommodates up to 6 adults + 2 children under 8 years.
             </p>
+            {/* Exclusivity & Conservation Quota Note */}
+            <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#173B2A]/8 border border-[#173B2A]/15 text-[11px] sm:text-xs text-[#173B2A] font-medium text-left shadow-xs">
+              <span className="text-sm shrink-0">🌿</span>
+              <span><strong>Forest Department regulation:</strong> Only limited 4×4 Gypsies permitted per safari session. Advance reservation recommended.</span>
+            </div>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8 items-stretch">
@@ -174,7 +179,7 @@ export default function JungleSafari({ openEnquiryModal }) {
               </div>
               <div className="flex flex-col gap-2.5 pt-2">
                 <button
-                  onClick={openEnquiryModal}
+                  onClick={() => openEnquiryModal("Weekday Safari — ₹8,000 / Gypsy")}
                   className="w-full py-3 rounded-full bg-[#173B2A] hover:bg-[#263D25] text-white text-xs sm:text-sm font-bold tracking-wider transition-all duration-300 shadow-md active:scale-95"
                 >
                   Book Weekday Safari
@@ -237,7 +242,7 @@ export default function JungleSafari({ openEnquiryModal }) {
               </div>
               <div className="flex flex-col gap-2.5 pt-2">
                 <button
-                  onClick={openEnquiryModal}
+                  onClick={() => openEnquiryModal("Weekend Prime Safari — ₹9,000 / Gypsy")}
                   className="w-full py-3 rounded-full bg-[#DDB64C] hover:bg-[#CBA239] text-[#173B2A] text-xs sm:text-sm font-extrabold tracking-wider transition-all duration-300 shadow-md active:scale-95"
                 >
                   Book Weekend Safari
@@ -297,7 +302,7 @@ export default function JungleSafari({ openEnquiryModal }) {
               </div>
               <div className="flex flex-col gap-2.5 pt-2">
                 <button
-                  onClick={openEnquiryModal}
+                  onClick={() => openEnquiryModal("Tatkal / Advance Priority Safari (₹10,800 - ₹15,300)")}
                   className="w-full py-3 rounded-full bg-[#173B2A] hover:bg-[#263D25] text-white text-xs sm:text-sm font-bold tracking-wider transition-all duration-300 shadow-md active:scale-95"
                 >
                   Book Tatkal Safari

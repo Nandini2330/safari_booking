@@ -1,20 +1,24 @@
 import React, { useState, useEffect } from 'react';
 import { X, Phone, MessageCircle, User, Calendar, FileText, ChevronRight } from 'lucide-react';
 
-export default function EnquiryModal({ isOpen, onClose }) {
+export default function EnquiryModal({ isOpen, onClose, initialPackage = '' }) {
+  const [selectedPackage, setSelectedPackage] = useState(initialPackage || '');
   const [form, setForm] = useState({ name: '', phone: '', date: '', notes: '' });
   const [submitted, setSubmitted] = useState(false);
 
-  // Prevent scroll when modal is open
+  // Sync package when modal opens or initialPackage changes
   useEffect(() => {
     if (isOpen) {
       document.body.style.overflow = 'hidden';
       setSubmitted(false);
+      if (initialPackage) {
+        setSelectedPackage(initialPackage);
+      }
     } else {
       document.body.style.overflow = '';
     }
     return () => { document.body.style.overflow = ''; };
-  }, [isOpen]);
+  }, [isOpen, initialPackage]);
 
   // Close on Escape key
   useEffect(() => {
@@ -29,8 +33,9 @@ export default function EnquiryModal({ isOpen, onClose }) {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    const pkgText = selectedPackage ? `\n• Selected Package: ${selectedPackage}` : '';
     const msg = encodeURIComponent(
-      `Hello Birdwing Ecotourism!\n\n🐾 Safari Booking Enquiry:\n• Name: ${form.name}\n• Phone: ${form.phone}\n• Visit Date: ${form.date || 'Flexible'}\n• Notes: ${form.notes || 'None'}\n\nPlease share availability and Gypsy booking rates.`
+      `Hello Birdwing Ecotourism!\n\n🐾 Safari Booking Enquiry:${pkgText}\n• Name: ${form.name}\n• Phone: ${form.phone}\n• Visit Date: ${form.date || 'Flexible'}\n• Notes: ${form.notes || 'None'}\n\nPlease share availability and Gypsy booking confirmation.`
     );
     window.open(`https://wa.me/919657493161?text=${msg}`, '_blank');
     setSubmitted(true);
@@ -105,6 +110,44 @@ export default function EnquiryModal({ isOpen, onClose }) {
             </div>
           ) : (
             <form onSubmit={handleSubmit} className="flex flex-col gap-4">
+              {/* Pre-filled / Selected Package Badge or Selector */}
+              {selectedPackage ? (
+                <div className="flex items-center justify-between p-3 rounded-xl bg-[#173B2A]/8 border border-[#DDB64C]/60 text-xs shadow-sm">
+                  <div className="flex items-center gap-2.5">
+                    <span className="w-7 h-7 rounded-full bg-[#DDB64C] flex items-center justify-center text-sm shadow-sm shrink-0">🚙</span>
+                    <div>
+                      <span className="text-[10px] font-bold text-[#687348] uppercase tracking-wider block">Selected Package</span>
+                      <span className="font-bold text-[#173B2A]">{selectedPackage}</span>
+                    </div>
+                  </div>
+                  <button
+                    type="button"
+                    onClick={() => setSelectedPackage('')}
+                    className="text-[10px] text-[#687348] hover:text-[#173B2A] font-bold underline ml-2 shrink-0"
+                  >
+                    Change
+                  </button>
+                </div>
+              ) : (
+                <div>
+                  <label className="text-[10px] font-bold tracking-[0.18em] text-[#687348] uppercase mb-1.5 flex items-center gap-1.5">
+                    <span>🚙</span>
+                    <span>Choose Safari Package</span>
+                  </label>
+                  <select
+                    value={selectedPackage}
+                    onChange={(e) => setSelectedPackage(e.target.value)}
+                    className="w-full px-3.5 py-2.5 rounded-xl bg-white border border-[#202A20]/15 text-xs text-[#202A20] focus:outline-none focus:border-[#687348] transition-all"
+                  >
+                    <option value="">Custom / Undecided Safari</option>
+                    <option value="Morning Safari — ₹8,000 / Gypsy">Morning Safari (6:00 AM – 10:00 AM) — ₹8,000</option>
+                    <option value="Evening Safari — ₹9,000 / Gypsy">Evening Safari (3:00 PM – 6:30 PM) — ₹9,000</option>
+                    <option value="Full Day Safari — ₹10,800 / Gypsy">Full Day Safari (Morning & Evening) — ₹10,800</option>
+                    <option value="Tatkal / Urgent Safari Booking">Tatkal / Urgent Safari Booking</option>
+                    <option value="Birdwatching Special Expedition">Birdwatching Special Expedition</option>
+                  </select>
+                </div>
+              )}
               <div>
                 <label className="text-[10px] font-bold tracking-[0.18em] text-[#687348] uppercase mb-1.5 flex items-center gap-1.5">
                   <User className="w-3.5 h-3.5" />

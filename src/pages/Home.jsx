@@ -10,11 +10,11 @@ export default function Home({ setActivePage, openEnquiryModal, setLightboxIndex
   };
 
   const galleryCollage = [
-    { src: '/assets/safari_tourists_jeep.jpg',    title: 'Sahyadri Tiger Reserve Open 4×4 Gypsy Safari', category: 'Safari' },
-    { src: '/assets/safari_udagiri_gate.jpg',     title: 'UNESCO Sahyadri Check Post (Range Amba)',      category: 'Safari' },
-    { src: '/assets/safari_field_expedition.jpg', title: 'Chandoli Meadows & Jungle Safari Tour',        category: 'Safari' },
-    { src: '/assets/safari_homestay_group.jpg',   title: 'Birdwing Ecotourism Station & Homestay',       category: 'Safari' },
-    { src: '/assets/gallery_lake.jpg',            title: 'Chandoli Lake Backwaters & Sahyadri Hills',    category: 'Landscapes' },
+    { src: '/assets/safari_tourists_jeep.jpg', title: 'Sahyadri Tiger Reserve Open 4×4 Gypsy Safari', category: 'Safari' },
+    { src: '/assets/safari_udagiri_gate.jpg', title: 'UNESCO Sahyadri Check Post (Range Amba)', category: 'Safari' },
+    { src: '/assets/safari_field_expedition.jpg', title: 'Chandoli Meadows & Jungle Safari Tour', category: 'Safari' },
+    { src: '/assets/safari_homestay_group.jpg', title: 'Birdwing Ecotourism Station & Homestay', category: 'Safari' },
+    { src: '/assets/gallery_lake.jpg', title: 'Chandoli Lake Backwaters & Sahyadri Hills', category: 'Landscapes' },
   ];
 
   const handleOpenCollage = (idx) => {
@@ -97,7 +97,7 @@ export default function Home({ setActivePage, openEnquiryModal, setLightboxIndex
                   alt="Panoramic Chandoli reservoir and Sahyadri hills landscape"
                   className="w-full h-full object-cover object-center transition-transform duration-700 group-hover:scale-105"
                 />
-                
+
                 {/* Clean, high-contrast, perfectly visible caption badge — zero clipping */}
                 <div className="absolute bottom-4 left-4 sm:left-6 flex items-center pointer-events-none">
                   <span className="inline-flex items-center gap-2 px-3.5 sm:px-4 py-1.5 sm:py-2 rounded-full bg-black/70 backdrop-blur-md text-white text-[11px] sm:text-xs font-medium tracking-wide border border-white/25 shadow-lg">
@@ -112,10 +112,10 @@ export default function Home({ setActivePage, openEnquiryModal, setLightboxIndex
           {/* ── Four Nature Category Cards (Immediately visible in viewport) ── */}
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4 sm:gap-6 mt-10 sm:mt-12">
             {[
-              { src: '/assets/card_wildflowers.jpg', label: 'Wildflowers',   page: 'experiences', alt: 'Purple wildflowers of Chandoli' },
-              { src: '/assets/card_birdwatching.jpg',label: 'Birdwatching',  page: 'experiences', alt: 'Indian Roller bird on branch' },
-              { src: '/assets/card_wildlife.jpg',    label: 'Wildlife',      page: 'experiences', alt: 'Leopard in Chandoli National Park' },
-              { src: '/assets/card_safari.jpg',      label: 'Jungle Safari', page: 'safari',      alt: 'Jeep safari on forest road' },
+              { src: '/assets/card_wildflowers.jpg', label: 'Wildflowers', page: 'experiences', alt: 'Purple wildflowers of Chandoli' },
+              { src: '/assets/card_birdwatching.jpg', label: 'Birdwatching', page: 'experiences', alt: 'Indian Roller bird on branch' },
+              { src: '/assets/card_wildlife.jpg', label: 'Wildlife', page: 'experiences', alt: 'Leopard in Chandoli National Park' },
+              { src: '/assets/card_safari.jpg', label: 'Jungle Safari', page: 'safari', alt: 'Jeep safari on forest road' },
             ].map(({ src, label, page, alt }) => (
               <div
                 key={label}
@@ -150,10 +150,13 @@ export default function Home({ setActivePage, openEnquiryModal, setLightboxIndex
             <img
               src="/assets/history_prachitgad.jpg"
               alt="Prachitgad Fort on Sahyadri cliff overlooking Chandoli forests"
+              loading="lazy"
               className="w-full h-full object-cover object-center"
             />
-            {/* Soft fade to right */}
+            {/* Soft fade to right on desktop */}
             <div className="hidden lg:block absolute inset-y-0 right-0 w-28 bg-gradient-to-l from-[#EFE7D8] to-transparent pointer-events-none" />
+            {/* Subtle bottom fade on mobile and tablet (< 1024px) preventing hard horizontal cuts */}
+            <div className="lg:hidden absolute inset-x-0 bottom-0 h-16 sm:h-20 bg-gradient-to-t from-[#EFE7D8] to-transparent pointer-events-none" />
           </div>
 
           {/* Right — sandstone text panel */}
@@ -195,6 +198,7 @@ export default function Home({ setActivePage, openEnquiryModal, setLightboxIndex
               <img
                 src="/assets/forest_jeep.jpg"
                 alt="Safari jeep driving through Chandoli forest trail at golden hour"
+                loading="lazy"
                 className="w-full h-full object-cover object-center"
               />
             </div>
@@ -227,6 +231,7 @@ export default function Home({ setActivePage, openEnquiryModal, setLightboxIndex
               <img
                 src="/assets/forest_road_tall.jpg"
                 alt="Green canopy arch over Chandoli forest road"
+                loading="lazy"
                 className="w-full h-full object-cover"
               />
             </div>
@@ -237,7 +242,7 @@ export default function Home({ setActivePage, openEnquiryModal, setLightboxIndex
       {/* ═══════════════════════════════════════════
           SECTION 5.5 — SAFARI BOOKING PACKAGES
       ═══════════════════════════════════════════ */}
-      <section className="relative py-16 sm:py-24 bg-[#E8EFE6] overflow-hidden">
+      <section className="relative py-14 sm:py-20 bg-[#E8EFE6] overflow-hidden">
         {/* Subtle Watermarks */}
         <img
           src="/assets/botanical_branch.svg"
@@ -256,14 +261,19 @@ export default function Home({ setActivePage, openEnquiryModal, setLightboxIndex
               Safari Packages
             </h2>
             <span className="w-10 h-[2.5px] bg-[#DDB64C] rounded mx-auto mb-2 block" />
-            <p className="text-xs sm:text-sm text-[#202A20]/75">
+            <p className="text-xs sm:text-sm text-[#202A20]/75 mb-2.5">
               Official 4×4 open Gypsy safaris in Chandoli. Up to 6 guests per vehicle.
             </p>
+            {/* Exclusivity & Conservation Quota Note */}
+            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#173B2A]/8 border border-[#173B2A]/15 text-[11px] sm:text-xs text-[#173B2A] font-medium text-left shadow-xs">
+              <span className="text-sm shrink-0">🌿</span>
+              <span><strong>Forest Department regulation:</strong> Only limited 4×4 Gypsies permitted per safari session. Advance reservation recommended.</span>
+            </div>
           </div>
 
           {/* 3 Compact Safari Package Cards (Clean Font-sans, Simple Words, Reduced Height) */}
           <div className="grid grid-cols-1 md:grid-cols-3 gap-5 lg:gap-6 items-stretch">
-            
+
             {/* Card 1: Morning Safari */}
             <div className="relative flex flex-col justify-between bg-white rounded-2xl p-5 sm:p-6 border border-[#202A20]/10 shadow-sm hover-lift transition-all duration-300 group">
               <div>
@@ -320,7 +330,7 @@ export default function Home({ setActivePage, openEnquiryModal, setLightboxIndex
 
               <div className="flex flex-col gap-1.5 pt-1">
                 <button
-                  onClick={openEnquiryModal}
+                  onClick={() => openEnquiryModal("Morning Safari — ₹8,000 / Gypsy")}
                   className="w-full py-2.5 rounded-full bg-[#173B2A] hover:bg-[#263D25] text-white text-xs sm:text-sm font-bold tracking-wider transition-all duration-300 shadow-sm hover:shadow active:scale-95"
                 >
                   Book Morning Safari
@@ -398,7 +408,7 @@ export default function Home({ setActivePage, openEnquiryModal, setLightboxIndex
 
               <div className="flex flex-col gap-1.5 pt-1">
                 <button
-                  onClick={openEnquiryModal}
+                  onClick={() => openEnquiryModal("Evening Safari — ₹9,000 / Gypsy")}
                   className="w-full py-2.5 rounded-full bg-[#173B2A] hover:bg-[#263D25] text-white text-xs sm:text-sm font-bold tracking-wider transition-all duration-300 shadow-sm hover:shadow active:scale-95"
                 >
                   Book Evening Safari
@@ -471,7 +481,7 @@ export default function Home({ setActivePage, openEnquiryModal, setLightboxIndex
 
               <div className="flex flex-col gap-1.5 pt-1">
                 <button
-                  onClick={openEnquiryModal}
+                  onClick={() => openEnquiryModal("Full Day Safari — ₹10,800 / Gypsy")}
                   className="w-full py-2.5 rounded-full bg-[#173B2A] hover:bg-[#263D25] text-white text-xs sm:text-sm font-bold tracking-wider transition-all duration-300 shadow-sm hover:shadow active:scale-95"
                 >
                   Book Full Day Safari
@@ -576,19 +586,20 @@ export default function Home({ setActivePage, openEnquiryModal, setLightboxIndex
               <div className="grid grid-cols-4 gap-3 sm:gap-6 w-full max-w-lg my-6">
                 {[
                   { src: '/assets/circle_wildflowers.jpg', title: 'Wildflowers', tag: 'Karvy Bloom' },
-                  { src: '/assets/circle_bird.jpg',        title: 'Birdwatching', tag: '122+ Species' },
-                  { src: '/assets/circle_wildlife.jpg',    title: 'Wildlife',     tag: 'Leopard & Gaur' },
-                  { src: '/assets/circle_landscape.jpg',   title: 'Landscapes',   tag: 'Cascade Falls' },
+                  { src: '/assets/circle_bird.jpg', title: 'Birdwatching', tag: '122+ Species' },
+                  { src: '/assets/circle_wildlife.jpg', title: 'Wildlife', tag: 'Leopard & Gaur' },
+                  { src: '/assets/circle_landscape.jpg', title: 'Landscapes', tag: 'Cascade Falls' },
                 ].map(({ src, title, tag }) => (
                   <div
                     key={title}
-                    onClick={() => setActivePage('experiences')}
+                    onClick={() => setActivePage('experiences', title)}
                     className="flex flex-col items-center text-center cursor-pointer group hover-lift transition-all duration-300"
                   >
                     <div className="w-16 h-16 sm:w-20 sm:h-20 rounded-full overflow-hidden border-2 border-white shadow-md group-hover:border-[#DDB64C] group-hover:shadow-xl transition-all duration-300">
                       <img
                         src={src}
                         alt={title}
+                        loading="lazy"
                         className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
                       />
                     </div>
@@ -605,7 +616,7 @@ export default function Home({ setActivePage, openEnquiryModal, setLightboxIndex
 
               {/* CTA Action Button */}
               <button
-                onClick={() => setActivePage('experiences')}
+                onClick={() => setActivePage('experiences', 'All')}
                 className="group mt-2 inline-flex items-center gap-3 pl-5 pr-1.5 py-1.5 rounded-full bg-[#173B2A] hover:bg-[#263D25] text-white text-xs sm:text-sm font-semibold tracking-wider transition-all duration-300 shadow-md hover:shadow-lg hover-lift active:scale-95"
               >
                 <span>View All Moments</span>
@@ -620,6 +631,7 @@ export default function Home({ setActivePage, openEnquiryModal, setLightboxIndex
               <img
                 src="/assets/nature_large_landscape.jpg"
                 alt="Secluded monsoon waterfall in Chandoli rainforest"
+                loading="lazy"
                 className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent flex items-end p-6">
@@ -664,7 +676,7 @@ export default function Home({ setActivePage, openEnquiryModal, setLightboxIndex
                 onClick={() => setActivePage('gallery')}
                 className="group inline-flex items-center gap-3 pl-6 pr-2 py-2 rounded-full bg-[#173B2A] hover:bg-[#263D25] text-white text-xs sm:text-sm font-semibold tracking-wider transition-all duration-300 shadow-md hover:shadow-lg hover-lift active:scale-95"
               >
-                <span>View Full Gallery</span>
+                <span>View Full Gallery (30+ Photos)</span>
                 <span className="w-7 h-7 rounded-full bg-[#DDB64C] flex items-center justify-center text-[#173B2A] transition-transform duration-300 group-hover:translate-x-0.5">
                   <ChevronRight className="w-4 h-4 stroke-[2.5]" />
                 </span>
@@ -674,7 +686,7 @@ export default function Home({ setActivePage, openEnquiryModal, setLightboxIndex
             {/* Right — Curated photo showcase where ALL FACES ARE 100% VISIBLE */}
             <div className="lg:col-span-8">
               <div className="grid grid-cols-12 gap-3 sm:gap-4">
-                
+
                 {/* Row 1, Photo 1: Open 4x4 Gypsy Group (6 cols, 2.15:1 aspect) — all 9 faces visible */}
                 <div
                   onClick={() => handleOpenCollage(0)}
@@ -683,6 +695,7 @@ export default function Home({ setActivePage, openEnquiryModal, setLightboxIndex
                   <img
                     src="/assets/safari_tourists_jeep.jpg"
                     alt="Sahyadri Tiger Reserve Open Gypsy Safari group"
+                    loading="lazy"
                     className="w-full h-full object-cover object-top transition-transform duration-500 group-hover:scale-[1.02]"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent flex items-end p-3 opacity-90 group-hover:opacity-100 transition-opacity">
@@ -700,6 +713,7 @@ export default function Home({ setActivePage, openEnquiryModal, setLightboxIndex
                   <img
                     src="/assets/safari_udagiri_gate.jpg"
                     alt="UNESCO Sahyadri Tiger Reserve Check Post Range Amba"
+                    loading="lazy"
                     className="w-full h-full object-cover object-center transition-transform duration-500 group-hover:scale-[1.02]"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent flex items-end p-3 opacity-90 group-hover:opacity-100 transition-opacity">
@@ -717,6 +731,7 @@ export default function Home({ setActivePage, openEnquiryModal, setLightboxIndex
                   <img
                     src="/assets/safari_field_expedition.jpg"
                     alt="Chandoli Meadows & Jungle Safari Tour"
+                    loading="lazy"
                     className="w-full h-full object-cover object-top transition-transform duration-500 group-hover:scale-[1.02]"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent flex items-end p-3 opacity-90 group-hover:opacity-100 transition-opacity">
@@ -734,6 +749,7 @@ export default function Home({ setActivePage, openEnquiryModal, setLightboxIndex
                   <img
                     src="/assets/safari_homestay_group.jpg"
                     alt="Birdwing Ecotourism Station & Homestay Group"
+                    loading="lazy"
                     className="w-full h-full object-cover object-top transition-transform duration-500 group-hover:scale-[1.02]"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent flex items-end p-3 opacity-90 group-hover:opacity-100 transition-opacity">
@@ -751,6 +767,7 @@ export default function Home({ setActivePage, openEnquiryModal, setLightboxIndex
                   <img
                     src="/assets/gallery_lake.jpg"
                     alt="Chandoli Lake Backwaters and Sahyadri Hills"
+                    loading="lazy"
                     className="w-full h-full object-cover object-center transition-transform duration-500 group-hover:scale-[1.02]"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent flex items-end p-3 opacity-90 group-hover:opacity-100 transition-opacity">
@@ -867,6 +884,7 @@ export default function Home({ setActivePage, openEnquiryModal, setLightboxIndex
               <img
                 src="/assets/visit_gazebo.jpg"
                 alt="Ecotourism viewpoint gazebo overlooking Chandoli valley at sunset"
+                loading="lazy"
                 className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent flex items-end p-4">
@@ -877,6 +895,80 @@ export default function Home({ setActivePage, openEnquiryModal, setLightboxIndex
             </div>
 
           </div>
+
+          {/* Driving Distance & Route Badges */}
+          <div className="mt-12 pt-8 border-t border-[#202A20]/10">
+            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 mb-4">
+              <span className="text-[10px] sm:text-[11px] font-bold tracking-[0.25em] text-[#687348] uppercase">
+                Driving Distances & Transit Access
+              </span>
+              <span className="text-xs text-[#202A20]/65">
+                Convenient gateway access from major Maharashtra transit hubs
+              </span>
+            </div>
+
+            <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4">
+              {/* Kolhapur */}
+              <div className="p-4 rounded-2xl bg-white border border-[#202A20]/10 shadow-sm flex items-center gap-3 hover-lift transition-all">
+                <span className="w-10 h-10 rounded-xl bg-[#173B2A]/10 text-[#173B2A] flex items-center justify-center font-bold text-lg shrink-0">
+                  🚗
+                </span>
+                <div>
+                  <span className="text-[10px] font-bold text-[#687348] uppercase tracking-wider block">Kolhapur</span>
+                  <div className="flex items-baseline gap-1">
+                    <span className="font-serif text-lg font-bold text-[#173B2A]">~2 hrs</span>
+                    <span className="text-xs text-[#202A20]/60">(75 km)</span>
+                  </div>
+                  <span className="text-[10px] text-[#202A20]/70">Via Malkapur</span>
+                </div>
+              </div>
+
+              {/* Pune */}
+              <div className="p-4 rounded-2xl bg-white border border-[#202A20]/10 shadow-sm flex items-center gap-3 hover-lift transition-all">
+                <span className="w-10 h-10 rounded-xl bg-[#173B2A]/10 text-[#173B2A] flex items-center justify-center font-bold text-lg shrink-0">
+                  🚗
+                </span>
+                <div>
+                  <span className="text-[10px] font-bold text-[#687348] uppercase tracking-wider block">Pune</span>
+                  <div className="flex items-baseline gap-1">
+                    <span className="font-serif text-lg font-bold text-[#173B2A]">~4.5 hrs</span>
+                    <span className="text-xs text-[#202A20]/60">(210 km)</span>
+                  </div>
+                  <span className="text-[10px] text-[#202A20]/70">Via Karad / Shirala</span>
+                </div>
+              </div>
+
+              {/* Mumbai */}
+              <div className="p-4 rounded-2xl bg-white border border-[#202A20]/10 shadow-sm flex items-center gap-3 hover-lift transition-all">
+                <span className="w-10 h-10 rounded-xl bg-[#173B2A]/10 text-[#173B2A] flex items-center justify-center font-bold text-lg shrink-0">
+                  🚗
+                </span>
+                <div>
+                  <span className="text-[10px] font-bold text-[#687348] uppercase tracking-wider block">Mumbai</span>
+                  <div className="flex items-baseline gap-1">
+                    <span className="font-serif text-lg font-bold text-[#173B2A]">~7 hrs</span>
+                    <span className="text-xs text-[#202A20]/60">(360 km)</span>
+                  </div>
+                  <span className="text-[10px] text-[#202A20]/70">Via NH 48</span>
+                </div>
+              </div>
+
+              {/* Railway */}
+              <div className="p-4 rounded-2xl bg-white border border-[#202A20]/10 shadow-sm flex items-center gap-3 hover-lift transition-all">
+                <span className="w-10 h-10 rounded-xl bg-[#DDB64C]/25 text-[#173B2A] flex items-center justify-center font-bold text-lg shrink-0">
+                  🚆
+                </span>
+                <div>
+                  <span className="text-[10px] font-bold text-[#687348] uppercase tracking-wider block">Nearest Railway</span>
+                  <div className="flex items-baseline gap-1">
+                    <span className="font-serif text-base sm:text-lg font-bold text-[#173B2A]">Sangli / Karad</span>
+                  </div>
+                  <span className="text-[10px] text-[#202A20]/70">55–75 km by cab</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
         </div>
       </section>
     </div>
